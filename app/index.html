@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo Server</title>
+	<script src="js/d3.min.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="demo row">
+			
+		</div>
+	</div>
+</body>
+<script>
+var url = "http://api.kptaipei.tw/v1/albums/72157646559528926";
+
+d3.json( url ,function(d){
+	var dataset = d.data.photos
+	d3.select('.demo').selectAll('img')
+	.data(dataset) 
+	.enter() 
+	.append('div')
+	.attr('class', 'col-xs-2')
+	.append('img').attr('class', 'img-responsive img-thumbnail')
+	.attr('src', function(d){ return d.images.large_square });
+});
+</script>
+</html>
